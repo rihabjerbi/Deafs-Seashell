@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "317916646381",
+    "project_id": "deafsseashell",
+    "storage_bucket": "deafsseashell.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:317916646381:android:08c3921d746d26b7ed35e4",
+        "android_client_info": {
+          "package_name": "com.example.deafsseashell"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "317916646381-hcfin160qfam3jhftlfqajjqk1a0dueb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCDmgURKF6R98joJvqf6-PKpClwFM5YiIE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "317916646381-hcfin160qfam3jhftlfqajjqk1a0dueb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
