@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+   <string name="app_name">Deafs seashell</string>
+   <string name="facebook_app_id">643017970059732</string>
+   <string name="fb_login_protocol_scheme">fb643017970059732</string>
+</resources>

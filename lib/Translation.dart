@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:speech_to_text/speech_to_text.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:avatar_glow/avatar_glow.dart';
 import 'dart:async';
 import 'dart:math';
 import 'package:speech_to_text/speech_recognition_error.dart';
@@ -65,33 +64,38 @@ class _TranslationState extends State<Translation> {
       home: Scaffold(
         body: SafeArea(
           child: SingleChildScrollView(
-            child: Column(children: [
-              Container(
-                child: Column(
-                  children: <Widget>[
-                    SizedBox(height:20.0 ,),
-                    Row(
-                      children: [
-                        SizedBox(width: 40.0,),
-                        Image(image: AssetImage('Images/logo.png'),height: 70,width: 63,),
-                        SizedBox(width: 20.0,),
-                        Text(
-                          'D e a f \' s  S e a s h e l l',
-                          style: TextStyle(fontSize: 24,fontFamily: 'Aladin'),
+            child: Column(
+              children: <Widget>[
+                SizedBox(height:20.0 ,),
+                Row(
+                  children: [
+                    SizedBox(width: 10.0,),
+                    Container(
+                      child: IconButton(
+                        icon: Icon(
+                          Icons.arrow_back_ios,
+                          color: Colors.black,
                         ),
-                      ],
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },),
                     ),
-                    InitSpeechWidget(_hasSpeech, initSpeechState),
-                    SpeechControlWidget(_hasSpeech, speech.isListening,
-                        startListening, stopListening, cancelListening),
-                    SessionOptionsWidget(_currentLocaleId, _switchLang,
-                        _localeNames, _logEvents, _switchLogging),
+                    //SizedBox(width: 20.0,),
+                    Image(image: AssetImage('Images/logo.png'),height: 70,width: 63,),
+                    SizedBox(width: 20.0,),
+                    Text(
+                      'D e a f \' s  S e a s h e l l',
+                      style: TextStyle(fontSize: 24,fontFamily: 'Aladin'),
+                    ),
                   ],
                 ),
-              ),
-              RecognitionResultsWidget(lastWords: lastWords, level: level),
-
-            ]),
+                InitSpeechWidget(_hasSpeech, initSpeechState),
+                SpeechControlWidget(_hasSpeech, speech.isListening,
+                    startListening, stopListening, cancelListening),
+                SessionOptionsWidget(_currentLocaleId, _switchLang, _localeNames, _logEvents, _switchLogging),
+                RecognitionResultsWidget(lastWords: lastWords, level: level),
+              ],
+            ),
           ),
         ),
       ),

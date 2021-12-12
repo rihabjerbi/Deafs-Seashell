@@ -35,10 +35,27 @@ class _VerificationState extends State<Verification> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Container(
-          child: Text('An email has been sent to ${user!.email} please verify'),
+    return Container(
+      width: double.infinity,
+      height: double.infinity,
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          fit: BoxFit.fitWidth,
+          image: AssetImage('Images/Background.png'),
+        ),
+      ),
+      child: Scaffold(
+        body: Center(
+          child: Container(
+            alignment: Alignment.center,
+            margin: EdgeInsets.symmetric(horizontal: 20.0),
+            padding: EdgeInsets.symmetric(horizontal: 20.0,vertical: 20.0),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20.0),
+                  color: Colors.white,
+            ),
+            child: Text('An email has been sent to ${user!.email} please verify'),
+          ),
         ),
       ),
     );
