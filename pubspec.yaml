@@ -23,6 +23,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  video_player: ^2.2.8
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -42,6 +43,14 @@ dev_dependencies:
   flutter_facebook_auth: ^3.5.0
   cloud_firestore: ^3.1.4
   firebase_database: ^9.0.2
+  image_picker: ^0.8.4+4
+  firebase_storage: ^10.2.4
+  dash_chat: ^1.1.16
+  intl: ^0.17.0
+  path: ^1.8.0
+  shared_preferences: ^2.0.12
+  flutter_onboarding_screen: ^2.0.2
+
 
 
 

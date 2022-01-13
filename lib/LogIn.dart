@@ -1,5 +1,5 @@
 import 'package:deafsseashell/ResetPassword.dart';
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -10,6 +10,8 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
 
 class LogIn extends StatefulWidget {
   const LogIn({Key? key}) : super(key: key);
@@ -25,8 +27,7 @@ class _LogInState extends State<LogIn> {
   bool isHidden = true;
   var loading = false ;
 
-  void validation() {
-
+  Future<void> validation() async {
     if (email.trim().isEmpty ) {
       Fluttertoast.showToast(msg: 'Please Enter your email',gravity: ToastGravity.BOTTOM,);
       return;
@@ -46,11 +47,20 @@ class _LogInState extends State<LogIn> {
     }
 
     else {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      prefs.setBool("isLoggedIn", true);
       setState(() {
         loading = false;
       });
       return;
     }}
+  Future<void> main() async {
+    WidgetsFlutterBinding.ensureInitialized();
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    var status = prefs.getBool('isLoggedIn') ?? false;
+    print(status);
+    runApp(MaterialApp(home: status == true ? _login(email,password) : Home()));
+  }
 
   void _logInWithFacebook() async {
     setState(() {loading = true;} );
@@ -343,11 +353,8 @@ class _LogInState extends State<LogIn> {
                   ),
                   child: TextButton(
                         onPressed: () {
-                          setState(() {
-                            //validation();
-                          });
-
                           _login(email, password);
+
                         },
                         child: Text(
                           'Get started',
@@ -389,7 +396,7 @@ class _LogInState extends State<LogIn> {
     try{await auth.signInWithEmailAndPassword(email: email, password: password);
     Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => Home()));
     } on FirebaseAuthException catch(error){
-    Fluttertoast.showToast(msg: error.message.toString(),gravity: ToastGravity.BOTTOM,);
+      Fluttertoast.showToast(msg: error.message.toString(),gravity: ToastGravity.BOTTOM,);
     }
 
   }

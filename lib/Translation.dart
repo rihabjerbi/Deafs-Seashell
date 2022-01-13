@@ -68,25 +68,44 @@ class _TranslationState extends State<Translation> {
               children: <Widget>[
                 SizedBox(height:20.0 ,),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    SizedBox(width: 10.0,),
-                    Container(
-                      child: IconButton(
-                        icon: Icon(
-                          Icons.arrow_back_ios,
-                          color: Colors.black,
+                    Row(
+                      children: [
+                        SizedBox(width: 30.0,),
+                        Image(image: AssetImage('Images/logo.png'),height: 70,width: 63,),
+                        SizedBox(width: 20.0,),
+                        Text(
+                          'D e a f \' s  S e a s h e l l',
+                          style: TextStyle(fontSize: 24,fontFamily: 'Aladin'),
                         ),
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },),
+                      ],
                     ),
-                    //SizedBox(width: 20.0,),
-                    Image(image: AssetImage('Images/logo.png'),height: 70,width: 63,),
-                    SizedBox(width: 20.0,),
-                    Text(
-                      'D e a f \' s  S e a s h e l l',
-                      style: TextStyle(fontSize: 24,fontFamily: 'Aladin'),
-                    ),
+                    IconButton(onPressed: ()=> showDialog (
+                      context: context,
+                      builder: (BuildContext context) => AlertDialog(
+                        insetPadding: EdgeInsets.all(10),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        elevation: 0,
+                        title: Text(
+                          'Help',
+                          style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        content: Container(
+                          child: Text(
+                            'Our translation tool is very simple.\nPlease follow these steps in order to use it: \n   • click on \"initialize\" \n   • pick up a language \n   • click once on "start" \n   • express yourself, then the talk will be displayed on the screen\n   • in case you say something wrong, you can repeat by using "cancel" \n   • when you finish talking, press "stop"',
+                            style: TextStyle(
+                                fontSize: 16,
+                                color: Colors.grey),
+                          ),
+                        ),
+                      ),),
+                      icon: Icon(Icons.help_outline,size: 30.0,),),
+
                   ],
                 ),
                 InitSpeechWidget(_hasSpeech, initSpeechState),
@@ -210,9 +229,11 @@ class RecognitionResultsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
+
     return Stack(
       children: <Widget>[
-        SvgPicture.asset('Images/shape.svg'),
+        Container(height:height*0.8,child: SvgPicture.asset('Images/shape.svg',)),
         Column(
           children: [
             SizedBox(height: 20.0,),

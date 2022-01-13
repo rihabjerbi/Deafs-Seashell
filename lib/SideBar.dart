@@ -1,7 +1,11 @@
+import 'package:deafsseashell/Profile.dart';
+import 'package:deafsseashell/aboutUs.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-
+import 'Profile.dart';
 import 'LogIn.dart';
+//import 'help.dart';
+import 'settings.dart';
 
 class NavigationDrawerWidget extends StatefulWidget {
   const NavigationDrawerWidget({Key? key}) : super(key: key);
@@ -24,48 +28,48 @@ class _NavigationDrawerWidgetState extends State<NavigationDrawerWidget> {
 
     final name = user!.displayName.toString();
     final email = user!.email.toString();
-    final urlImage =
-        'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80';
-
+    final photoURL ='https://library.kissclipart.com/20191119/oxq/kissclipart-interface-icon-user-icon-profile-user-icon-ecaea47ab8810f35.png';
     return Drawer(
       child: Material(
         color: Color(0xffeebeb1),
         child: ListView(
           children: <Widget>[
             buildHeader(
-                urlImage: urlImage,
+                urlImage: photoURL,
                 name: name,
                 email: email,
-                onClicked: () {}),
+                onClicked: () {
+                  Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => Profile()));
+                }),
             Container(
               padding: padding,
               child: Column(
                 children: [
                   const SizedBox(height: 12),
-                  buildSearchField(),
+                  Divider(color: Colors.white70),
                   const SizedBox(height: 24),
                   buildMenuItem(
                     text: 'Profile',
                     icon: Icons.person,
-                    onClicked: () => selectedItem(context, 0),
+                    onClicked: () => Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => Profile())),
                   ),
                   const SizedBox(height: 16),
                   buildMenuItem(
                     text: 'Settings',
                     icon: Icons.settings_sharp,
-                    onClicked: () => selectedItem(context, 1),
+                    onClicked: () => Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => Settings())),
                   ),
                   const SizedBox(height: 16),
                   buildMenuItem(
                     text: 'About',
                     icon: Icons.workspaces_outline,
-                    onClicked: () => selectedItem(context, 2),
+                    onClicked: () => Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => AboutUs())),
                   ),
                   const SizedBox(height: 16),
                   buildMenuItem(
                     text: 'Help',
                     icon: Icons.help_outline,
-                    onClicked: () => selectedItem(context, 3),
+                    onClicked: () => Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => AboutUs())),
                   ),
                   const SizedBox(height: 24),
                   Divider(color: Colors.white70),
@@ -123,29 +127,7 @@ class _NavigationDrawerWidgetState extends State<NavigationDrawerWidget> {
         ),
       );
 
-  Widget buildSearchField() {
-    final color = Colors.white;
 
-    return TextField(
-      style: TextStyle(color: color),
-      decoration: InputDecoration(
-        contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-        hintText: 'Search',
-        hintStyle: TextStyle(color: color),
-        prefixIcon: Icon(Icons.search, color: color),
-        filled: true,
-        fillColor: Colors.white12,
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(5),
-          borderSide: BorderSide(color: color.withOpacity(0.7)),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(5),
-          borderSide: BorderSide(color: color.withOpacity(0.7)),
-        ),
-      ),
-    );
-  }
 
   Widget buildMenuItem({
     required String text,
